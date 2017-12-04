@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+
+</head>
+<body>
+  <h1><u>Plumber Availability</u></h1>
+<script class="plumberTemplate" type="text/x-handlebars">
+  <table class="table table-striped table-list-search" style="word-wrap:break; min-width:200px; max-width:500px">
+
+  <tr>
+  <th>Name</th>
+  <th>Contact</th>
+  <th>Day</th>
+  <th>Slot</th>
+  <th>Book</th>
+  </tr>
+
+  {{#each plumberBooked}}
+  <tr>
+  <td>{{this.name}}</td>
+  <td>{{this.contact_details}}</td>
+  <td>{{this.days}}</td>
+  <td>{{this.slots}}</td>
+</tr>
+{{/each}}
+
+</table>
+</script>
+  <!-- <form class="" action="" method="post"> -->
+        <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <br>
+
+
+<div class="container">
+  <label><b>Name</b></label>
+  <br>
+  <input type="text" placeholder="Enter name" class="name" required>
+  <br>
+  <label><b>Contact</b></label>
+  <br>
+  <input type="text" placeholder="Enter contact" class="contact_details" required>
+<br></br>
+
+<table id="slots">
+  <tr>
+    <th><input type="checkbox" value="monday" class="day">Monday<br></th>
+</tr>
+<tr>
+<th><input type="checkbox" value="tuesday" class="day">Tuesday<br></th>
+</tr>
+<tr>
+<th><input type="checkbox" value="wednesday" class="day">Wednesday<br></th>
+</tr>
+<tr>
+<th><input type="checkbox" value="thursday" class="day">Thursday<br></th>
+
+</tr>
+<tr>
+<th><input type="checkbox" value="friday" class="day">Friday<br></th>
+
+</tr>
+<tr>
+<th><input type="checkbox" value="suturday" class="day">Saturday<br></th>
+
+<tr>
+<th><input type="checkbox" value="sunday" class="day">Sunday<br></th>
+</tr>
+</table>
+<br>
+<th><input type="radio"  value="morning" name="slot" class="slots">Morning<br></th>
+<th><input type="radio" value="midday" name="slot" class="slots">Midday<br></th>
+<th><input type="radio"  value="afternoon" name="slot" class="slots">Afternnon<br></th>
+
+
+
+<button type="submit"  class="btn btn-default add-plumber-btn"  id="reg">Submit</button>
+</div>
+  </div>
+</div>
+</nav>
+<!-- </form> -->
+
+
+<script id="plumbersList" type="text/x-handlebars">
+<table class="table table-striped table-list-search" style="word-wrap:break; min-width:200px; max-width:500px">
+
+<tr>
+<th>Name</th>
+<th>Contact</th>
+<th>Day</th>
+<th>Slot</th>
+<th>Book</th>
+</tr>
+
+{{#each plumberData}}
+<tr>
+<td>{{this.name}}</td>
+<td>{{this.contact_details}}</td>
+<td>{{this.days}}</td>
+<td>{{this.slots}}</td>
+<td>{{this.book}}<button value={{_id}} class="btn btn-primary" id="bookBtn" onclick='bookPlumber("{{_id}}")'>Book</button></td>
+</tr>
+{{/each}}
+
+</table>
+</script>
+<div id="output"></div>
+<div id="display"></div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+<script src="plumber.js" charset="utf-8"></script>
+</html>

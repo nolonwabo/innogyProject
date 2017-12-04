@@ -13,6 +13,7 @@
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "handlebars": "^4.0.11",
     "mongoose": "^4.13.5",
     "pkg": "^4.3.0-beta.1",
     "socket.io": "^2.0.4"

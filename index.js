@@ -5,7 +5,7 @@ var app = express();
 var bookModel = require('./model');
 var ObjectId = require("mongodb").ObjectId;
 var bodyParser = require('body-parser');
-
+var handlebars = require('handlebars');
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', "*");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -61,11 +61,55 @@ app.post('/api/register', function(req, res) {
 })
 
 
+app.post('/api/plumbers/slot/:slot/day/:day', function(req, res) {
+  var slot = req.params.slot
+  var day = req.params.day
+  shiftModel.find({
+    days: day,
+    slots: slot
+  }, function(err, dataFiltering) {
+    console.log(dataFiltering);
+    if (err) {
+      return res.json({
+        status: "error",
+        error: err
+      })
+    } else {
+      res.json({
+        status: "success",
+        data: dataFiltering,
+
+      })
+    }
+  })
+
+});
 
 
+app.get('/api/plumbers/:id', function(req, res) {
+  var id = req.params.id;
+
+  shiftModel.findOne({
+      _id: ObjectId(id)
+    },
+
+    function(err, updatedPlumberInfo) {
+      if (err) {
+        return res.json({
+          status: "error",
+          error: err,
+          data: []
+        });
+      }
+
+        res.json({
+          status: "success",
+          data: updatedPlumberInfo
+        })
 
 
-
+    })
+})
 
 
 
