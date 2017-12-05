@@ -1,5 +1,5 @@
 "use strict";
- var shiftModel = require('./model');
+var shiftModel = require('./model');
 var express = require('express');
 var app = express();
 var bookModel = require('./model');
@@ -10,8 +10,8 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', "*");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.header('Access-Control-Allow-Headers', '"Origin, X-Requested-With, Content-Type, Accept"');
-  if(req.method === "OPTIONS"){
-    res.header("Access-Control-Allow-Methods","GET,PUT,POST,DELETE")
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE")
   }
   next();
 })
@@ -25,18 +25,18 @@ app.set('view engine', 'handlebars');
 
 app.get('/api/register', function(req, res) {
   shiftModel.find({}, function(err, allPlumbers) {
-  if (err) {
-    return res.json({
-      status: "error",
-      error: err
-    });
-  } else {
-    res.json({
-      status: "success",
-      data: allPlumbers
-    });
-  }
-})
+    if (err) {
+      return res.json({
+        status: "error",
+        error: err
+      });
+    } else {
+      res.json({
+        status: "success",
+        data: allPlumbers
+      });
+    }
+  })
 });
 
 
@@ -49,14 +49,16 @@ app.post('/api/register', function(req, res) {
   shiftModel.create({
     name: name,
     contact_details: contact_details,
-    days:days,
-    slots:slots
+    days: days,
+    slots: slots
   }, function(err, registered) {
     if (err) {
       return err;
     }
 
-          res.json({registered})
+    res.json({
+      registered
+    })
   })
 })
 
@@ -102,10 +104,10 @@ app.get('/api/plumbers/:id', function(req, res) {
         });
       }
 
-        res.json({
-          status: "success",
-          data: updatedPlumberInfo
-        })
+      res.json({
+        status: "success",
+        data: updatedPlumberInfo
+      })
 
 
     })
